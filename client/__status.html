@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <title>ArcherFall.io | Status Page </title>
+
+    <meta property="og:site_name" content="Jabami.io" />
+
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+    <link rel="icon" type="image/png" href="data:image/png;base64,iVBORw0KGgo=">
+
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, minimum-scale=1, width=device-width, height=device-height">
+
+    <style type="text/css">
+      .title {
+        text-align: center;
+        font-weight: normal;
+      }
+
+      .title .memory {
+        font-weight: bold;
+      }
+
+      body {
+        font-family: arial;
+        font-size: 16px;
+      }
+
+      .game_servers {
+      }
+
+      .node_container {
+        margin-bottom: 40px;
+        margin-left: 50px;
+        float: left;
+      }
+
+      .node_name {
+        font-weight: bold;
+        font-size: 20px;
+      }
+
+      .server_entry {
+        font-size: 14px;
+      }
+
+      .server_entry_col {
+        display: inline-block;
+        margin-right: 20px;
+      }
+
+      .host_column {
+        width: 310px;
+      }
+
+      .revision_column {
+        width: 80px;
+      }
+
+      .memory_column {
+        width: 60px;
+      }
+
+      .debug_column {
+        width: 50px;
+      }
+
+      .games_column {
+        width: 50px;
+      }
+
+      .count_column {
+        width: 60px;
+      }
+
+      .row {
+
+      }
+
+      .summary {
+        text-align: center;
+      }
+
+      .public_summary,
+      .turnbased_summary,
+      .realtime_summary {
+        border: solid 1px black;
+        padding: 10px;
+        margin-right: 20px;
+        display: inline-block;
+        vertical-align: middle;
+      }
+
+      .room_uid {
+        width: 250px;
+        display: inline-block;
+      }
+
+      .room_players {
+        width: 300px;
+        display: inline-block;
+      }
+
+      .player_count {
+        width: 100px;
+        display: inline-block;
+      }
+
+      .bot_count {
+        width: 100px;
+        display: inline-block;
+      }
+
+      .col {
+        border: solid 1px #eee;
+        padding: 5px;
+        font-family: arial;
+        font-size: 14px;
+      }
+      
+    </style>
+</head>
+<body style=''>
+  <h3 class='title'>Game Servers <span class='memory'></span></h3>
+  <pre class='game_servers'></pre>
+  <div class='summary'>
+  </div>
+
+  <script type="text/javascript">
+    var httpRequest = function(url, cb) {
+      var xhttp = new XMLHttpRequest()
+      xhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+           cb.success(xhttp.responseText)
+        }
+      }
+      xhttp.onerror = cb.error
+      xhttp.open("GET", url, true)
+      xhttp.send()
+
+      return xhttp
+    }
+
+    var renderServerStatus = function(result) {
+      let el = ""
+      el += "<div class='servers'>"
+      el += "<div class='server_columns'>"
+      el += "<div class='server_entry_col host_column'>Host</div>"
+      el += "<div class='server_entry_col revision_column'>Revision</div>"
+      el += "<div class='server_entry_col memory_column'>Memory</div>"
+      el += "<div class='server_entry_col games_column'>Games</div>"
+      el += "<div class='server_entry_col count_column player_count_column'>Players</div>"
+      el += "</div>"
+
+      for (let region in result) {
+        let servers = result[region]
+        for (let host in servers) {
+          let serverData = servers[host]
+          el += "<div class='server_entry'>"
+          el += `<div class='server_entry_col host_column'>${serverData.host}</div>`
+          el += `<div class='server_entry_col revision_column'>${serverData.revision}</div>`
+          el += `<div class='server_entry_col memory_column'>${serverData.memory}MB</div>`
+          el += `<div class='server_entry_col games_column'>${serverData.gameCount}</div>`
+          el += `<div class='server_entry_col count_column'>${serverData.playerCount}</div>`
+          el += "</div>"
+        }
+      }
+
+      el += "</div>"
+
+      document.querySelector(".game_servers").innerHTML = el
+    }
+
+    let url = "http://localhost:3000/server_status"
+    if (window.location.host === "archerfall.io") {
+      url = "https://matchmaker.archerfall.io/server_status"
+    }
+
+    httpRequest(url, {
+      success: (data) => {
+        let result = JSON.parse(data)
+        renderServerStatus(result)
+      },
+      error: (data) => {
+        document.querySelector(".game_servers").innerText = "Error fetching status"
+      }
+    })
+    
+  </script>
+</body>
+</html>

@@ -1,0 +1,122 @@
+<div id='performance_stats'>
+  <div id='tick'><span>server tick </span><span class='value'></span></div>
+  <div id='server_memory'><span>server memory </span><span class='value'></span></div>
+  <div id='ping'><span>ping </span><span class='value'></span></div>
+</div>
+
+
+<div class='in_game_menu'>
+  <div class='mute_btn in_game_btn'><div></div></div>
+  <div class='exit_game_btn in_game_btn'>
+      <img src="/assets/images/backgrounds/exit_room_icon.png">
+  </div>
+  <div class='ping_display'></div>
+</div>
+
+<div class="waiting_for_players_message">Waiting for players...</div>
+
+<div class='map_name_message'>
+  <div class="level_map_name"></div>
+  <div class="level_map_creator"></div>
+</div>
+<div class='round_message'>
+  Round 1
+</div>
+
+<div class='chat_container readonly'>
+  <div class='chat_history'></div>
+  <div class='chat_input_container'>
+    <input type="text" class='chat_input' autocomplete="nope" placeholder="send message">
+  </div>
+</div>
+
+<div class='round_end_modal'>
+  <div class='scores'>
+      <div class='score_row'><div class='score_name'>Teresa</div><div class='score_value'>10</div></div>
+      <div class='score_row'><div class='score_name'>Mil</div><div class='score_value'>40</div></div>
+  </div>
+</div>
+
+<div class='leaderboard'>
+  <div class='leaderboard_title'>Leaderboard</div>
+  <div class="winner_message">Winner is </div>
+  <div class='ranks_container'>
+      <div class='ranks_row'>
+          <div class='rank_col'></div>
+          <div class='name_col'></div>
+          <div class='kills_col'></div>
+          <div class='deaths_col'></div>
+      </div>
+  </div>
+  <div class='continue_message'>Next round in <span class='next_round_remaining'>5</span></div>
+</div>
+<div class='share_modal'>
+  <div class='cancel_btn'></div>
+  <button class='copy_link_btn'>Copy Invite Link</button>
+</div>
+
+<div class='level_editor_menu'>
+  <div class='level_actions'>
+      <div class='new_map_btn menu_btn'>Empty</div>
+      <div class='load_map_btn menu_btn'>Load</div>
+      <div class='export_map_btn menu_btn'>Export</div>
+      <div class='save_map_btn menu_btn'>Save</div>
+
+      <input type="file" id="load_map_input">
+  </div>
+
+  <div class='map_name'>
+      <label class="editor_setting_key">Name</label>
+      <span class='map_name_value'></span>
+      <input type="text" class='map_name_input menu_input' maxlength='40'  placeholder="Enter map name">
+      <div class='rename_btn'>
+        <img src='/assets/images/backgrounds/edit_icon.png'>
+      </div>
+  </div>
+  <div>
+    <span class="editor_setting_key">Blocks</span>
+    <div class='blocks_menu'>
+
+    </div>
+  </div>
+
+  <div>
+    <span class="editor_setting_key">Pickups</span>
+    <div class='pickups_menu'>
+
+    </div>
+  </div>
+
+  <div class='background_color'>
+      <span class="editor_setting_key">Background Color: </span>
+      <input type='color' class='background_color_picker' value='#111111'>
+  </div>
+  <div class='ground_color'>
+      <span class="editor_setting_key">Ground Color: </span>
+      <input type='color' class='ground_color_picker' value='#555555'>
+  </div>
+  <div class='wall_color'>
+      <span class="editor_setting_key">Wall Color: </span>
+      <input type='color' class='wall_color_picker' value='#555555'>
+  </div>
+  <div class='toggle_grid'>
+      <label for="level_grid" class="level_grid_label editor_setting_key">Toggle Grid</label>
+      <input type="checkbox" id="level_grid" name="level_grid" checked />
+  </div>
+  <div class='simulate'>
+      <label for="should_simulate" class="should_simulate_label editor_setting_key">Simulate</label>
+      <input type="checkbox" id="should_simulate" name="should_simulate" />
+  </div>
+
+  <div class='debug_menu'>
+      <div class='pixel_coord'></div>
+      <div class='row_coord'></div>
+      <div class='rotation'></div>
+  </div>
+
+</div>
+
+<div id='building_menu_tooltip' class='tooltip top'>
+  <div class='entity_name'></div>
+  <div class='entity_description'></div>
+</div>

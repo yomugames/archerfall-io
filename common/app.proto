@@ -1,0 +1,499 @@
+syntax = "proto3";
+package Protocol;
+
+message MessageWrapper {
+  oneof kind {
+    RequestGame RequestGame = 1;
+    JoinGame JoinGame = 2;
+    PlayerReady PlayerReady = 3;
+    Ping Ping = 4;
+    Pong Pong = 5;
+    CantJoin CantJoin = 6;
+    LeaveGame LeaveGame = 7;
+    OtherPlayerJoined OtherPlayerJoined = 8;
+    PlayerLeave PlayerLeave = 10;
+    ResumeGame ResumeGame = 12; 
+    SessionResume SessionResume = 13;
+    PlayerUpdated PlayerUpdated = 16;
+    StartRound StartRound = 19;
+    AFK AFK = 20;
+    GameState GameState = 21;
+    PlayerInput PlayerInput = 22;
+    Player Player = 23;
+    Mob Mob = 24;
+    RoundEnd RoundEnd = 25;
+    LevelEditor LevelEditor = 26;
+    Level Level = 27;
+    RoundStart RoundStart = 28;
+    Block Block = 29;
+    PlayerTarget PlayerTarget = 31;
+    Build Build = 32;
+    Projectile Projectile = 33;
+    Pickup Pickup = 34;
+    PlaySound PlaySound = 35; 
+    PlayAnimation PlayAnimation = 36; 
+    Debug Debug = 37;
+    GameUpdated GameUpdated = 38;
+    EditLevel EditLevel = 39;
+    LobbyJoined LobbyJoined = 40;
+    OtherPlayerLobbyJoined OtherPlayerLobbyJoined = 41;
+    LobbyLeft LobbyLeft = 42;
+    LobbyUpdated LobbyUpdated = 43;
+    StartGame StartGame = 44;
+    UpdateThumbnail UpdateThumbnail = 45;
+    ChangeMap ChangeMap = 46; 
+    MapData MapData = 47;
+    ClientChat ClientChat = 48;
+    ServerChat ServerChat = 49;
+    GoToScreen GoToScreen = 50;
+    EditLobby EditLobby = 51;
+    PlayClientAnimation PlayClientAnimation = 52;
+    PickupEntry PickupEntry = 53;
+  }
+}
+
+message Transform {
+  Vec2 position = 1;
+  Vec2 size = 2;
+  float rotation = 3;
+  Vec2 anchor = 4;
+  float scale = 5;
+}
+
+enum ClientAnimationType {
+  MobPortal = 1;
+}
+
+message PlayClientAnimation {
+  bool loop = 1;
+  float duration = 2;
+  Transform setupData = 3;
+  ClientAnimationType animationType = 4;
+}
+
+message GoToScreen {
+  string name = 1;
+}
+
+message EditLobby {
+  bool isPrivate = 1;
+}
+
+message ClientChat {
+  string message = 1;
+}
+
+message ServerChat {
+  uint32 playerId = 1;
+  string message = 2;
+  string username = 3;
+  string uid = 4;
+}
+
+message ChangeMap {
+  string uid = 1;
+}
+
+message UpdateThumbnail {
+  string thumbnail = 1;
+}
+
+message StartGame {
+  
+}
+
+message EditLevel {
+  string foregroundColor = 1;
+  string backgroundColor = 2;
+  bool simulate = 3;
+  string wallColor = 4;
+  PickupType pickupType = 5;
+  bool   isEnabled = 6;
+}
+
+message Build {
+  uint32 x = 1;
+  uint32 y = 2;
+  uint32 w = 3;
+  uint32 h = 4;
+  uint32 type = 5;
+  string color = 6;
+}
+
+message PlayerTarget {
+  float rotation = 1;
+}
+
+message PlaySound {
+  SoundType id = 1; 
+  bool loop = 2;
+  bool requestStop = 3;
+}
+
+message GameUpdated {
+  uint32 tickRate = 1;
+}
+
+message PlayAnimation {
+  AnimationType id = 1;
+  uint32 entityId = 2;
+  float rotation = 3;
+  bool isFacingRight = 5;
+}
+
+enum AnimationType {
+  Attack = 1; 
+  Land = 2;
+  WingFlap = 3;
+}
+
+enum SoundType {
+  ArrowHit = 1;
+  PlayerLand = 2;
+  LaserBounce = 3;
+  Reload = 4;
+  Ice = 5;
+  ChemicalExplosion = 6;
+  Drill = 7;
+  MonsterHit = 8;
+}
+
+message RequestGame {
+  string sessionId = 1;
+  string username = 2;
+  string gameUid = 3;
+  string avatar = 4;
+  string userToken = 6;
+  bool isCustomGame = 8;
+  bool isJoinLobby = 9;
+  string idToken = 10;
+  string color = 11;
+  string hat = 12;
+  string uid = 13;
+}
+
+message SessionResume {
+  bool success = 1;
+}
+
+message LobbyJoined {
+  string gameUid = 1;
+  uint32 playerId = 2;
+  map<uint32,PlayerData> players = 3;
+  string thumbnail = 4;
+  uint32 hostId = 5;
+  bool isPrivate = 6;
+}
+
+message LobbyLeft {
+  PlayerData player = 1;
+}
+
+message OtherPlayerLobbyJoined {
+  PlayerData player = 1;
+}
+
+message LobbyUpdated {
+  string gameUid = 1;
+  string name = 2;
+  uint32 playerCount = 3;
+  string thumbnail = 4;
+  uint32 hostId = 5;
+  bool clientMustDelete = 6;
+  bool isPrivate = 7;
+}
+
+message JoinGame {
+  uint32 playerId = 1;
+  map<uint32,PlayerData> players = 2;
+  string gameUid = 3;
+  bool isRoundStarted = 4;
+  MapData mapData = 5;
+  uint32 tickRate = 6;
+  bool isLevelEditor = 7;
+  bool isCustomGame = 8;
+}
+
+message MapData {
+  uint32 rowCount = 1;
+  uint32 colCount = 2;
+  string foregroundColor = 3;
+  string backgroundColor = 4;
+  map<uint32, Block> staticObjects = 5;
+  map<uint32, PlayerData> players = 6;
+  map<uint32, Pickup> pickups = 7;
+  string name = 8;
+  string creator = 9;
+  string wallColor = 10;
+  repeated PickupType allowedPickupTypes = 11;
+}
+
+message PickupEntry {
+  repeated PickupType allowedPickupTypes = 11;
+}
+
+message SpawnPoint {
+  float x = 1;
+  float y = 2;
+}
+
+message Block {
+  uint32 id = 1;
+  Vec2 position = 2;
+  string color = 5;
+  BlockType type = 6;
+  bool clientMustDelete = 7;
+  uint32 width = 8;
+  uint32 height = 9;
+}
+
+message Vec2 {
+  float x = 1;
+  float y = 2;
+}
+
+message PlayerReady {
+
+}
+
+message Ping {
+}
+
+message Pong {
+}
+
+
+message RemovePlayer {
+  uint32 playerId = 1;
+}
+
+message PlayerLeave {
+  uint32 playerId = 1;
+}
+
+message PlayerUpdated {
+  Player player = 1;
+}
+
+message PlayerData {
+  uint32 id = 1;
+  string name = 2;
+  string avatar = 3;
+  int32 score = 4;
+  Vec2 position = 5;
+  string color = 7;
+  ProjectileType equip = 8;
+  bool isHost = 9;
+  string hat = 10;
+}
+
+message Pickup {
+  uint32 id = 1;
+  PickupType type = 2;
+  Vec2 position = 3;
+  bool clientMustDelete = 4;
+  bool acquired = 5;
+}
+
+message Player {
+  uint32 id = 1;
+  Vec2 position = 2;
+  PlayerState state = 3;
+  bool isFacingRight = 4;
+  uint32 effects = 5;
+  uint32 ammo = 6;
+  ProjectileType arrowType = 7;
+  bool clientMustDelete = 8;
+  Equipment equipment = 9;
+}
+
+message Equipment {
+  EquipmentType equipType = 9;
+}
+
+enum EffectType {
+  None = 0;
+  Shield = 1;
+  Invisible = 2;
+  Wing = 3;
+  Haste = 4;
+  DoubleShot = 5;
+  Ghost = 6;
+  Fire = 7;
+  RotatingDart = 8;
+}
+
+enum PlayerState {
+  Idle = 0;
+  Run = 1;
+  Jump = 2;
+  Dance = 3;
+  Die = 4;
+  Crouch = 5;
+  Fall = 6;
+  Land = 7;
+  DoubleJump = 8;
+  Roll = 9;
+}
+
+enum BlockType {
+  Eraser = 0;
+  Ground = 1;
+  SpawnPoint = 2;
+  Lava = 3;
+  Boundary = 4;
+  IceWall = 5;
+  JumpPad = 6;
+  ExplodingOrb = 7;
+  Wall = 8;
+  TwoWayPlatform = 9;
+  MobSpawner = 10;
+}
+
+enum EquipmentType {
+  Bow = 1;
+  Dagger = 2;
+}
+
+enum ProjectileType {
+  None = 0;
+  Arrow = 1;
+  Explosion = 2;
+  BombArrow = 3;
+  LaserArrow = 4;
+  IceArrow = 5;
+  BoltArrow = 6;
+  PoisonArrow = 7;
+  Bolt = 8;
+  PoisonGas = 9;
+  ExplodingOrb = 10;
+  ChemicalExplosion = 11;
+  DrillArrow = 12;
+  Dagger = 14;
+}
+
+enum PickupType {
+  Soul = 1;
+  TimeOrb = 2;
+  Shield = 3;
+  Invisibility = 4;
+  BombArrow = 5;
+  LaserArrow = 6;
+  Wing = 7;
+  IceArrow = 8;
+  Boots = 9;
+  BoltArrow = 10;
+  PoisonArrow = 11;
+  DoubleShot = 12;
+  DrillArrow = 13;
+  RotatingDart = 14;
+  Dagger = 15;
+}
+
+message Mob {
+  uint32 id = 1;
+  MobType type = 2;
+  Vec2 position = 3;
+  uint32 width = 5;
+  uint32 height = 6;
+  bool clientMustDelete = 7;
+}
+
+message OtherPlayerJoined {
+  PlayerData player = 1;
+}
+
+message CantJoin {
+  string message = 1;
+}
+
+
+message LeaveGame {
+  bool isLeaveStage = 1;
+}
+
+message StartRound {
+  
+}
+
+message AFK {
+  
+}
+
+message ResumeGame {
+  string sessionId = 1;
+}
+
+message GameState {
+  map<uint32,Player> players = 1;
+  map<uint32,Projectile> projectiles = 2;
+  map<uint32,Block> movingObjects = 3;
+  map<uint32,Mob> mobs = 4;
+  double tick = 5;
+  uint32 memory = 6;
+  uint32 timestamp = 7;
+}
+
+message Projectile {
+  uint32 id = 1;
+  ProjectileType type = 2;
+  Vec2 position = 3;
+  float rotation = 4;
+  bool clientMustDelete = 5;
+  float width = 6;
+  float height = 7;
+}
+
+message PlayerInput {
+  uint32 controlKeys = 1;
+  DirectionType direction = 2;
+  bool  idle = 3;
+  bool jump = 4;
+  bool attack = 5;
+  bool roll = 6;
+}
+
+message RoundStart {
+  uint32 round = 1;
+}
+
+enum DirectionType {
+  None = 0;
+  Left = 1; 
+  Right = 2; 
+  Down = 3;
+}
+
+message RoundEnd {
+  string winner = 1;
+  map<string, uint32> scores = 2;
+  repeated Ranking rankings = 3;
+  bool isFinal = 4;
+}
+
+message Ranking {
+  uint32 rank = 1;
+  string name = 2;
+  uint32 score = 3;
+}
+
+message LevelEditor {
+  string action = 1;
+  string data = 2;
+}
+
+message Debug {
+  string mode = 1;
+  repeated Vec2 points = 2;
+  float radius = 3;
+}
+
+message Level {
+  repeated float heightmap = 1;
+}
+
+enum MobType {
+  Slime = 1;
+  Crow = 2;
+  Squid = 3;
+}

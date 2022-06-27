@@ -1,0 +1,225 @@
+{
+  "tileSize": 32,
+  "rowCount": 30,
+  "colCount": 36,
+  "playerClientWidth": 38,
+  "playerClientHeight": 64,
+  "playerWidth": 25,
+  "playerHeight": 64,
+  "cameraRowCount": 20,
+  "cameraColCount": 30,
+  "gravity": -16,
+  "Control": {
+    "up": 1,
+    "down": 2,
+    "left": 4,
+    "right": 8,
+    "enter": 16
+  },
+  "Colors": {
+    "red": "#FF0000",
+    "orange": "#FF8000",
+    "yellow": "#FFFF00",
+    "green": "#00FF00",
+    "lightblue": "#33FFFF",
+    "darkblue": "#3333FF",
+    "purple": "#B266FF",
+    "pink": "#FF66FF",
+    "darkpink": "#FF66B2",
+    "grey": "#C0C0C0",
+    "brown": "#663300",
+    "copper": "#999900",
+    "teal": "#006666",
+    "maroon": "#660066",
+    "white": "#FFFFFF"
+  },
+  "physicsTimeStep": 10,
+  "Hats": {
+    "StrawHat": {
+      "x": 18 
+    },
+    "FezHat": {
+      "x": 12 
+    },
+    "CowboyHat": {
+      "x": 12 
+    },
+    "VikingHat": {
+      "x": 20 
+    },
+    "WatermelonHat": {
+      "x": 15,
+      "y": 5
+    },
+    "ArmyHat": {
+      "x": 15,
+      "y": 5
+    }
+  },
+  "Mobs": {
+    "Slime": {
+      "width": 32,
+      "height": 32,
+      "speed": 5
+    },
+    "Crow": {
+      "width": 32,
+      "height": 32,
+      "speed": 5
+    },
+    "Squid": {
+      "width": 32,
+      "height": 32,
+      "speed": 5
+    }
+  },
+  "Projectiles": {
+    "Arrow": {
+      "width": 42,
+      "height": 12,
+      "speed": 60,
+      "color": "#c38558"
+    },
+    "BombArrow": {
+      "width": 42,
+      "height": 12,
+      "speed": 50,
+      "color": "#ff0000"
+    },
+    "LaserArrow": {
+      "width": 42,
+      "height": 12,
+      "speed": 40,
+      "color": "#eebe12"
+    },
+    "IceArrow": {
+      "width": 42,
+      "height": 12,
+      "speed": 60,
+      "color": "#4fd7f8"
+    },
+    "BoltArrow": {
+      "width": 42,
+      "height": 12,
+      "speed": 50,
+      "color": "#8a3dc7"
+    },
+    "PoisonArrow": {
+      "width": 42,
+      "height": 12,
+      "speed": 50,
+      "color": "#00ff00"
+    },
+    "DrillArrow": {
+      "width": 50,
+      "height": 24,
+      "speed": 50,
+      "color": "#888888"
+    },
+    "Explosion": {
+      "width": 128,
+      "height": 128,
+      "speed": 0
+    },
+    "Bolt": {
+      "width": 32,
+      "height": 32,
+      "speed": 15
+    },
+    "PoisonGas": {
+      "width": 32,
+      "height": 32,
+      "speed": 10
+    },
+    "ExplodingOrb": {
+      "width": 32,
+      "height": 32,
+      "speed": 0
+    },
+    "ChemicalExplosion": {
+      "width": 32,
+      "height": 32,
+      "speed": 0
+    }
+  },
+  "Equipments": {
+    "Bow": {
+      "width": 48,
+      "height": 48
+    },
+    "Dagger": {
+      "width": 90,
+      "height": 90,
+      "x": 20,
+      "y": -20,
+      "rotation": 30,
+      "range": 4
+    }
+  },
+  "Pickups": {
+    "Dagger": {
+      "width": 48,
+      "height": 48,
+      "outlined": true
+    },
+    "Soul": {
+      "width": 16,
+      "height": 16
+    },
+    "TimeOrb": {
+      "width": 32,
+      "height": 32
+    },
+    "Shield": {
+      "width": 32,
+      "height": 32
+    },
+    "Wing": {
+      "width": 48,
+      "height": 48
+    },
+    "Boots": {
+      "width": 48,
+      "height": 48
+    },
+    "DoubleShot": {
+      "width": 32,
+      "height": 32
+    },
+    "Invisibility": {
+      "width": 32,
+      "height": 32
+    },
+    "RotatingDart": {
+      "width": 32,
+      "height": 32,
+      "radius": 96,
+      "outlined": true
+    },
+    "BombArrow": {
+      "width": 48,
+      "height": 48
+    },
+    "LaserArrow": {
+      "width": 48,
+      "height": 48
+    },
+    "IceArrow": {
+      "width": 48,
+      "height": 48
+    },
+    "BoltArrow": {
+      "width": 48,
+      "height": 48
+    },
+    "PoisonArrow": {
+      "width": 48,
+      "height": 48
+    },
+    "DrillArrow": {
+      "width": 48,
+      "height": 24,
+      "outlined": true
+    }
+  }
+}

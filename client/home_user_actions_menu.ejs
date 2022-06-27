@@ -1,0 +1,65 @@
+<div id='region_selector'>
+    <select id='region_select' class='ui_select'>
+    </select>
+</div>
+
+<div id='username_form_container' class='modal_menu_center'>
+    <div id='username_form_description'>Choose a username</div>
+    <input type="text" id='new_username_input' class='menu_input'>
+    <button id='set_username_btn'>Submit</button>
+    <div id='username_errors'></div>
+</div>
+
+<div id='connecting_message'>Connecting ...<div class="lds-ring"><div></div><div></div><div></div><div></div></div></div>
+
+  <div id='account_container' class='home_menu_container'>
+      <div id='login_cookies'>Cookies must be enabled to Login</div>
+      <div id='auth_in_progress'>
+          <span>Authenticating...</span>
+      </div>
+      <div id='username_container'>
+          <div id='username'></div>
+      </div>
+
+      <div id='authentication_container'>
+          <div id='login_btn' class='menu_btn home_menu_btn'><%= 'Login' %></div>
+          <div class='login_error'>
+              <div class='login_error_header'>Login Error</div>
+              <div class='login_error_message'></div>
+          </div>
+      </div>
+  </div>
+
+  <div id='logged_in_menu_container'>
+      <div id='logout_btn' class='menu_btn'><%= 'Logout' %></div>
+  </div>
+
+
+
+  <div id='social_login_container'>
+      <div class='google_login_btn'>
+          <img src="/assets/images/backgrounds/google_white_icon.png">
+          <span class='login_btn_label'>Signin with Google</span>
+      </div>
+  </div>
+
+  <div id='firebaseui-auth-container'></div>
+
+<div class="enter_game_container">
+    <button class='rankings_btn menu_btn home_menu_btn'>
+        <img src="/assets/images/backgrounds/leaderboard_icon_2.png" />
+        Ranks
+    </button>
+    <button class='browse_game_btn menu_btn home_menu_btn'>Custom Game</button>
+    <button class='play_btn menu_btn home_menu_btn'>
+        <span class='play_btn_label'>Play</span>
+        <div class="play_spinner lds-ring"><div></div><div></div><div></div><div></div></div>
+    </button>
+</div>
+<div class="enter_room_container">
+    <div class="home_back_btn menu_btn">Back</div>
+    <button class='home_join_room_btn menu_btn '>
+        <img src="/assets/images/backgrounds/play_icon.png" class='play_icon'>
+        Join Room
+    </button>
+</div>

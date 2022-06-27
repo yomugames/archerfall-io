@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>Archer Fall | PvP Arena</title>
+
+    <meta name="description" content="Bow & Arrow online party game. Fight against your friends stickman style. Inspired from towerfall and other 2d platformer games." />
+    <meta property="og:url" content="http://ArcherFall.io" />
+    <meta property="og:title" content="ArcherFall.io - 2D platformer fighting using Bow & Arrow" />
+    <meta property="og:description" content="Fight against your friends with Bow and Arrow. Stickman style with Online Multiplayer and playable on mobile web. Create Custom games using Level Editor and invite your friends to play." />
+    <meta property="og:site_name" content="ArcherFall.io" />
+    <meta property="og:image" content="https://i.imgur.com/sgox8OK.png" />
+    <meta property="og:image:type" content="image/png" />
+    <meta property="og:image:width" content="500" />
+    <meta property="og:image:height" content="250" />
+    <meta property="og:type" content="website" />
+
+    <meta name="twitter:card" content="summary">
+    <!-- <meta name="twitter:image" content=""> -->
+    <meta name="twitter:title" content="ArcherFall.io">
+    <meta name="twitter:description" content="Online 2D platformer fight w/ Bow and Arrow. Become the strongest Archer and challenge your friends stickman style.">
+
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-title" content="ArcherFall.io">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link rel="apple-touch-icon" href="/assets/images/backgrounds/icon_512.png">
+    <!-- <link rel="icon" type="image/png" href="/assets/images/backgrounds/favicon.png"> -->
+
+
+    <link rel="stylesheet" href="/stylesheets/<%= assetPath('application.css') %>">
+
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, minimum-scale=1, width=device-width, height=device-height">
+
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
+    <script>
+        window.env = "<%= nodeEnv %>"
+        window.revision = "<%= revision %>"
+        window.protocolHash = "<%= protocolHash %>"
+    </script>
+</head>
+<body style='' class='<%= nodeEnv %>'>
+    <div class='please_rotate_container'>
+        <div class='home_title'>
+            <img src="/assets/images/backgrounds/archerfall_logo.png" >
+        </div>
+        <h3>Please Rotate your device</h3>
+        <img src="/assets/images/backgrounds/rotatedevice.gif">
+    </div>
+    <div class='error_message'></div>
+    <div class='success_message'></div>
+    <div class="disconnected_msg">Disconnected</div>
+
+    <canvas id='game_canvas' tabindex='0'></canvas>
+<div id='move_joystick'></div>
+<div class='jump_btn'>
+  <div class='jump_btn_background'></div>
+  <img src="/assets/images/jump_icon_blue.png">
+</div>
+<div id='shoot_joystick'></div>
+
+
+    <div class='home_page page active'>
+        <div class="home_click_to_play">CLICK TO PLAY</div>
+        <div class="video_overlay">
+        </div>
+        <video class='gameplay_footage' width="100%" height="100%" autoplay muted playsinline loop>
+            <source src="/assets/images/backgrounds/gameplay_desktop.mp4" type="video/mp4">
+        </video>
+        <div class='download_container'>
+            <a target="_blank" href=""><img class='android_app' src="/assets/images/backgrounds/google_play_small.png"></a>
+            <a target="_blank" href=""><img class='ios_app' src="/assets/images/backgrounds/apple_store_small.png"></a>
+        </div>
+
+        <div class="home_menu_overlay">
+            <div class='home_title'>
+                <img src="/assets/images/backgrounds/archerfall_logo.png" >
+            </div>
+            <%- include('home_user_actions_menu.ejs') %>
+            <div class="home_middle_container">
+            </div>
+            <div class="customize_panel">
+                <div data-panel='hat' class="customize_player_tab">Hat</div>
+                <div data-panel='color' class="customize_player_tab">Color</div>
+            </div>
+            <div class="hat_container">
+
+            </div>
+            <div class='about_links'>
+                <a target='_blank' class='partners_link' href="/">More Games</a>
+                <a target='_blank' class='privacy_link' href="/privacy.html">Privacy</a>
+                <a target='_blank' class='credits_link' href="/credits.html">Credits</a>
+            </div>
+            <div class='social_links'>
+                <a target='_blank' href="https://discord.com/invite/JGvxeND98c"><img src="/assets/images/backgrounds/discord_icon.png" /></a>
+                <a class="github_icon" target='_blank' href="https://github.com/yomugames/archerfall-io"><img src="/assets/images/backgrounds/github_icon.png" /></a>
+                <!-- <a target='_blank' href="https://www.facebook.com/"><img src="/assets/images/backgrounds/facebook.png" /></a> -->
+            </div>
+            <div class='total_online_count'></div>
+        </div>
+        <%- include('rankings_menu.ejs') %>
+        <%- include('browse_game_menu.ejs') %>
+        <%- include('game_lobby_menu.ejs') %>
+        <%- include('game_settings_menu.ejs') %>
+        <%- include('browse_map_menu.ejs') %>
+    </div>
+    <div class="performance_graph">
+        <div class="performance_chart_div"></div>
+        <div class="resume_graph_btn">Start</div>
+        <div class="close_graph_btn">Close</div>
+    </div>
+
+    <div class='game_page page'>
+        <%- include('game_container.ejs') %>
+    </div>
+    <script src="/<%= assetPath('vendor.js') %>"></script>
+    <script src="/<%= assetPath('app.js') %>"   ></script>
+</body>
+<div id="fb-root"></div>
+</html>
