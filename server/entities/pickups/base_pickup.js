@@ -58,7 +58,11 @@ class BasePickup extends BaseEntity {
     this.onPickupUpdated()
   }
 
-  apply() {
+  apply(player) {
+    if (this.isArrow()) {
+      player.setEquip(Protocol.definition().EquipmentType.Bow)
+    }
+
     this.acquired = true
   }
 
